@@ -15,7 +15,9 @@ include(cmake/variables.cmake)
 
 # ---- Declare executable ----
 
-add_executable(raytracer-cpp_exe source/main.cpp)
+add_executable(raytracer-cpp_exe source/main.cpp
+        source/Riptracer.cpp
+        source/Riptracer.h)
 add_executable(raytracer-cpp::exe ALIAS raytracer-cpp_exe)
 
 find_package(fmt 7.1.3 REQUIRED)
