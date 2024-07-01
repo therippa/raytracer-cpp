@@ -5,6 +5,8 @@
 #ifndef RAYTRACER_CPP_RIPTRACER_H
 #define RAYTRACER_CPP_RIPTRACER_H
 
+#include <cmath>
+
 struct Tuple {
     float x, y, z, w;
 
@@ -41,6 +43,14 @@ struct Vector : Tuple {
             : Tuple(x, y, z, 0.0f) {}
 
     // Vector-specific operations can be added here
+    auto magnitude() -> float {
+        return std::sqrt(
+                std::pow(x, 2) +
+                std::pow(y, 2) +
+                std::pow(z, 2) +
+                std::pow(w, 2)
+        );
+    }
 };
 
 struct Point : Tuple {
@@ -48,13 +58,14 @@ struct Point : Tuple {
             : Tuple(x, y, z, 1.0f) {}
 
     // Point-specific operations can be added here
+
 };
 
 class Riptracer {
 public:
     Riptracer();
-    static auto create_point(float x, float y, float z) -> Tuple;
-    static auto create_vector(float x, float y, float z) -> Tuple;
+    static auto magnitude(float x, float y, float z) -> Tuple;
+    //static auto create_vector(float x, float y, float z) -> Tuple;
 };
 
 

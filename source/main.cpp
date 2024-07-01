@@ -66,6 +66,23 @@ auto main() -> int {
     a1 = { 1, -2, 3, -4 };
     expect((a1 / 2) == Tuple { 0.5, -1, 1.5, -2 });
 
+    // computing the magnitude of vectors
+    v1 = { 1, 0, 0 };
+    expect(v1.magnitude() == 1);
+
+    v1 = { 0, 1, 0 };
+    expect(v1.magnitude() == 1);
+
+    v1 = { 0, 0, 1 };
+    expect(v1.magnitude() == 1);
+
+    v1 = { 1, 2, 3 };
+    float sqr14 = std::sqrt(14);
+    expect(v1.magnitude() == sqr14) << "epsilon=0.1";
+
+    v1 = { -1, -2, -3 };
+    expect(v1.magnitude() == sqr14) << "epsilon=0.1";
+
     // exit
     return 0;
 }
