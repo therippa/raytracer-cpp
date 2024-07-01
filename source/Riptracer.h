@@ -6,18 +6,48 @@
 #define RAYTRACER_CPP_RIPTRACER_H
 
 struct Tuple {
-    float x;
-    float y;
-    float z;
-    float w;
+    float x, y, z, w;
+
+    Tuple(float x = 0.0f, float y = 0.0f, float z = 0.0f, float w = 0.0f)
+            : x(x), y(y), z(z), w(w) {}
 
     auto operator == (const Tuple& a) const -> bool {
         return a.x == x && a.y == y && a.z == z && a.w == w;
     }
 
     auto operator + (const Tuple& a) const -> Tuple {
-        return Tuple(a.x + x, a.y + y, a.z + z, a.w + w);
+        return Tuple { x + a.x, y + a.y, z + a.z, w + a.w };
     }
+
+    auto operator - (const Tuple& a) const -> Tuple {
+        return Tuple { x - a.x, y - a.y, z - a.z, w - a.w };
+    }
+
+    auto operator - () const -> Tuple {
+        return Tuple { -x, -y, -z, -w };
+    }
+
+    auto operator * (float scalar) const -> Tuple {
+        return Tuple { x * scalar, y * scalar, z * scalar, w * scalar};
+    }
+
+    auto operator / (float scalar) const -> Tuple {
+        return Tuple { x / scalar, y / scalar, z / scalar, w / scalar};
+    }
+};
+
+struct Vector : Tuple {
+    Vector(float x = 0.0f, float y = 0.0f, float z = 0.0f)
+            : Tuple(x, y, z, 0.0f) {}
+
+    // Vector-specific operations can be added here
+};
+
+struct Point : Tuple {
+    Point(float x = 0.0f, float y = 0.0f, float z = 0.0f)
+            : Tuple(x, y, z, 1.0f) {}
+
+    // Point-specific operations can be added here
 };
 
 class Riptracer {
